@@ -8,11 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace WindowsFormsApplication1
 {
     public partial class Form2 : Form
     {
+        private string fileName = "saveEXCEL.xml";
         public Form2()
         {
             InitializeComponent();
@@ -83,6 +85,28 @@ namespace WindowsFormsApplication1
         private void Form2_Load(object sender, EventArgs e)
         {
             textBox1.Text = Form1.excelPath;
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("name", typeof(string));
+            dt.Columns.Add("val", typeof(bool));
+            try
+            {
+                XDocument xml = XDocument.Load(fileName);
+                textBox1.Text = xml.Root.Element("workPath").Value;
+                foreach (XElement item in xml.Root.Element("data").Descendants("row"))
+                {
+                    DataRow dr = dt.NewRow();
+                    dr[0] = item.Attribute("num").Value;
+                    dr[1] = item.Attribute("val").Value;
+                    dt.Rows.Add(dr);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            //将datatable绑定到datagridview上显示结果  
+            dataGridView1.DataSource = dt;
         }
 
         private void Form2_Leave(object sender, EventArgs e)
@@ -92,7 +116,34 @@ namespace WindowsFormsApplication1
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Form1.excelPath = textBox1.Text;
+            //Form1.excelPath = textBox1.Text;
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            XDocument xml = new XDocument();
+
+            XElement rootFirst = new XElement("base");
+            XElement ele = new XElement("workPath");
+            ele.Value = textBox1.Text;
+            rootFirst.Add(ele);
+            ele = new XElement("data");
+            rootFirst.Add(ele);
+            string temp;
+            for (int i = 0; i < this.dataGridView1.Rows.Count - 1; i++)
+            {
+                temp = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                if (temp.Length > 0)
+                {
+                    XElement newEle = new XElement("row");
+                    newEle.SetAttributeValue("num", temp);
+                    newEle.SetAttributeValue("val", dataGridView1.Rows[i].Cells[1].Value.ToString());
+                    ele.Add(newEle);
+                }
+            }
+            xml.Add(rootFirst);
+            xml.Save(fileName);
         }
     }
 }
