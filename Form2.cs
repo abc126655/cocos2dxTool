@@ -14,7 +14,6 @@ namespace WindowsFormsApplication1
 {
     public partial class Form2 : Form
     {
-        private string fileName = "saveEXCEL.xml";
         public Form2()
         {
             InitializeComponent();
@@ -84,14 +83,13 @@ namespace WindowsFormsApplication1
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            textBox1.Text = Form1.excelPath;
 
             DataTable dt = new DataTable();
             dt.Columns.Add("name", typeof(string));
             dt.Columns.Add("val", typeof(bool));
             try
             {
-                XDocument xml = XDocument.Load(fileName);
+                XDocument xml = XDocument.Load(Form1.saveEXCEL);
                 textBox1.Text = xml.Root.Element("workPath").Value;
                 foreach (XElement item in xml.Root.Element("data").Descendants("row"))
                 {
@@ -116,7 +114,6 @@ namespace WindowsFormsApplication1
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //Form1.excelPath = textBox1.Text;
 
         }
 
@@ -143,7 +140,15 @@ namespace WindowsFormsApplication1
                 }
             }
             xml.Add(rootFirst);
-            xml.Save(fileName);
+            xml.Save(Form1.saveEXCEL);
+        }
+
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if(e.ColumnIndex ==1)
+            {
+                //button4_Click(sender, null);
+            }
         }
     }
 }

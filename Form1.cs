@@ -17,14 +17,14 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        private string fileName = "save.xml";
-        public static  string excelPath = "E:\\svn\\design\\配置表\\test";
+        public static string fileName = "save.xml";
+        public static  string saveEXCEL = "saveEXCEL.xml";
         public Form1()
         {
             InitializeComponent();
             fileName = ConfigurationManager.AppSettings["saveFile"];
+            saveEXCEL = ConfigurationManager.AppSettings["saveExel"];
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             panel1.AutoScroll = true;
@@ -43,8 +43,6 @@ namespace WindowsFormsApplication1
                 XDocument xml = XDocument.Load(file);
                 Console.WriteLine(xml);
                 textBox1.Text = xml.Root.Element("workPath").Value;
-                if (xml.Root.Element("excelPath")!=null)
-                    excelPath = xml.Root.Element("excelPath").Value;
                 foreach (XElement item in xml.Root.Element("data").Descendants("row"))
                 {
                     DataRow dr = dt.NewRow();
@@ -151,9 +149,6 @@ namespace WindowsFormsApplication1
             XElement ele = new XElement("workPath");
             ele.Value = textBox1.Text;
             rootFirst.Add(ele);
-            ele = new XElement("excelPath");
-            ele.Value = excelPath;
-            rootFirst.Add(ele);
             ele = new XElement("data");
             rootFirst.Add(ele);
             string temp;
@@ -245,10 +240,6 @@ namespace WindowsFormsApplication1
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);//获取Configuration对象
-            config.AppSettings.Settings["saveFile"].Value = fileName;
-            config.Save(ConfigurationSaveMode.Modified);       //保存，写不带参数的config.Save()也可以
-            ConfigurationManager.RefreshSection("appSettings");//刷新，否则程序读取的还是之前的值（可能已装入内存）
         }
 
         private void eXCELToolStripMenuItem_Click(object sender, EventArgs e)
@@ -271,6 +262,12 @@ namespace WindowsFormsApplication1
                 label1.Text += Common.execCMD(cmdStr);
                 MessageBox.Show("work sucess");
             }
+        }
+
+        private void 设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form3 fm = new Form3();
+            fm.ShowDialog();
         }
     }
 }
