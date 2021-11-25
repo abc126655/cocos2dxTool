@@ -37,8 +37,7 @@ namespace WindowsFormsApplication1
             string output = pro.StandardError.ReadToEnd();
             if (output.Length > 1)
                 output = "[error]" + output;
-            else
-                output = pro.StandardOutput.ReadToEnd();
+            output = pro.StandardOutput.ReadToEnd();
             pro.WaitForExit();//等待程序执行完退出进程
             pro.Close();
             return output;

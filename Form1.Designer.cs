@@ -40,7 +40,10 @@
             this.保存XMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eXCELToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateScriptV1002021ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.平台打包ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.关于ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateScriptV10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -48,7 +51,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -83,6 +85,7 @@
             this.Column1.DataPropertyName = "num";
             this.Column1.HeaderText = "版本号";
             this.Column1.Name = "Column1";
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Column1.Width = 140;
             // 
             // Column2
@@ -90,6 +93,7 @@
             this.Column2.DataPropertyName = "val";
             this.Column2.HeaderText = "版本值";
             this.Column2.Name = "Column2";
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Column2.Width = 322;
             // 
             // label1
@@ -103,6 +107,7 @@
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(14, 446);
@@ -114,8 +119,9 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文件ToolStripMenuItem,
+            this.关于ToolStripMenuItem,
             this.设置ToolStripMenuItem,
-            this.关于ToolStripMenuItem});
+            this.关于ToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(614, 25);
@@ -151,7 +157,7 @@
             // 
             this.关于ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eXCELToolStripMenuItem,
-            this.updateScriptV1002021ToolStripMenuItem});
+            this.平台打包ToolStripMenuItem});
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
             this.关于ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.关于ToolStripMenuItem.Text = "其它工具";
@@ -160,15 +166,36 @@
             // 
             this.eXCELToolStripMenuItem.Name = "eXCELToolStripMenuItem";
             this.eXCELToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.eXCELToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.eXCELToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.eXCELToolStripMenuItem.Text = "EXCEL TO LUA";
             this.eXCELToolStripMenuItem.Click += new System.EventHandler(this.eXCELToolStripMenuItem_Click);
             // 
-            // updateScriptV1002021ToolStripMenuItem
+            // 平台打包ToolStripMenuItem
             // 
-            this.updateScriptV1002021ToolStripMenuItem.Name = "updateScriptV1002021ToolStripMenuItem";
-            this.updateScriptV1002021ToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.updateScriptV1002021ToolStripMenuItem.Text = "UpdateScriptV1.0.0(2021)";
+            this.平台打包ToolStripMenuItem.Name = "平台打包ToolStripMenuItem";
+            this.平台打包ToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.平台打包ToolStripMenuItem.Text = "平台打包";
+            // 
+            // 设置ToolStripMenuItem
+            // 
+            this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.设置ToolStripMenuItem.Text = "设置";
+            this.设置ToolStripMenuItem.Click += new System.EventHandler(this.设置ToolStripMenuItem_Click);
+            // 
+            // 关于ToolStripMenuItem1
+            // 
+            this.关于ToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.updateScriptV10ToolStripMenuItem});
+            this.关于ToolStripMenuItem1.Name = "关于ToolStripMenuItem1";
+            this.关于ToolStripMenuItem1.Size = new System.Drawing.Size(44, 21);
+            this.关于ToolStripMenuItem1.Text = "关于";
+            // 
+            // updateScriptV10ToolStripMenuItem
+            // 
+            this.updateScriptV10ToolStripMenuItem.Name = "updateScriptV10ToolStripMenuItem";
+            this.updateScriptV10ToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.updateScriptV10ToolStripMenuItem.Text = "UpdateScriptV1.0";
             // 
             // label2
             // 
@@ -226,13 +253,6 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // 设置ToolStripMenuItem
-            // 
-            this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.设置ToolStripMenuItem.Text = "设置";
-            this.设置ToolStripMenuItem.Click += new System.EventHandler(this.设置ToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -282,13 +302,15 @@
         private System.Windows.Forms.ToolStripMenuItem 保存XMLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.ToolStripMenuItem updateScriptV1002021ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eXCELToolStripMenuItem;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem updateScriptV10ToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.ToolStripMenuItem 平台打包ToolStripMenuItem;
     }
 }
 

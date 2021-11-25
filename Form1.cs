@@ -27,7 +27,6 @@ namespace WindowsFormsApplication1
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            panel1.AutoScroll = true;
             label1.Text = "这里显款输出信息 \r\n";
 
             ReadXmlFile(fileName);
@@ -111,13 +110,15 @@ namespace WindowsFormsApplication1
                 else
                 {
                     cmdStr = new string[] {"",""};
-                    cmdStr[0] = "git diff " + lastVerion + dataGridView1.Rows[i].Cells[1].Value.ToString();
-                    cmdStr[0] += " --name-only ";
+                    cmdStr[0] = "cd " + path;
+                    cmdStr[1] = "git diff " + lastVerion + dataGridView1.Rows[i].Cells[1].Value.ToString();
+                    cmdStr[1] += " --name-only ";
                     tempExe = Common.execCMD(cmdStr);
                     label1.Text += tempExe;
+                    panel1.AutoScrollPosition = new Point(0, panel1.VerticalScroll.Maximum);
+                    Application.DoEvents();
                     if (!tempExe.StartsWith("[error]"))
                     {
-                        cmdStr[0] = "cd " + path;
                         cmdStr[1] = workPath;
                         cmdStr[1] += "\\zip ud" + dataGridView1.Rows[i].Cells[0].Value.ToString() + ".zip";
                         string[] temp = label1.Text.Split('\n');
@@ -133,9 +134,10 @@ namespace WindowsFormsApplication1
                             }
                         }
                         label1.Text += Common.execCMD(cmdStr);
-
+                        panel1.AutoScrollPosition = new Point(0, panel1.VerticalScroll.Maximum);
+                        Application.DoEvents();
                     }
-                    Console.WriteLine(label1.Text);
+                    
                 }
             }
             button1.Enabled = true;
@@ -256,6 +258,8 @@ namespace WindowsFormsApplication1
             cmdStr[1] = "git pull";
             string tempExe = Common.execCMD(cmdStr);
             label1.Text += tempExe;
+            panel1.AutoScrollPosition = new Point(0, panel1.VerticalScroll.Maximum);
+            Application.DoEvents();
             if (!tempExe.StartsWith("[error]"))
             {
                 cmdStr[1] = "cocos luacompile -s src -d src_luac/src -e -k demoKey -b demoSign --disable-compile";
