@@ -107,9 +107,10 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(3, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(311, 36);
+            this.label4.Size = new System.Drawing.Size(311, 48);
             this.label4.TabIndex = 7;
-            this.label4.Text = "       也可以通过环境变量，不用设置目录,EXCEL通过accessdatabaseengine.exe来读取，请先安装，zip在程序目录下";
+            this.label4.Text = "       也可以通过环境变量，不用设置目录,EXCEL通过accessdatabaseengine.exe来读取，请先安装，zip在程序目录下http://s" +
+    "tahlworks.com/dev/index.php?tool=zipunzip";
             // 
             // tableLayoutPanel1
             // 

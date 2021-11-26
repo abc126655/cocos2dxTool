@@ -202,13 +202,13 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(17, 60);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 12);
+            this.label2.Size = new System.Drawing.Size(167, 12);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Script根目录";
+            this.label2.Text = "打包目录(含有src/res子目录)";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(118, 60);
+            this.textBox1.Location = new System.Drawing.Point(213, 57);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(307, 21);
             this.textBox1.TabIndex = 8;

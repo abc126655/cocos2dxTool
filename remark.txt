@@ -1,22 +1,39 @@
 is version of the Android Support plugin for IntelliJ IDEA 
 》》》file>project structure>> gradle 和android studio版本须对应上 gradle4.2要求android studio4以上
-
+-----------------------------------------------------------------------
 build stopped: subcommand failed
 》》》升级NDKr16至最新17并修改 build.gradle   android {  ndkVersion "17.2.4988734"
-
-
+------------------------------------------------------------------------
 Babe Lua加载项目特别慢
 》》》》回到项目根目录下，用文本编辑器打开 src.luaproj 文件，修改其中的：
-<ProjectHome>.<ProjectHome> 为<ProjectHome>./src<ProjectHome>====== 然后将所有的 “ src\ ” 替换为空字符串。接着删除第一个为空的目录，
+<ProjectHome>.<ProjectHome> 为<ProjectHome>./src<ProjectHome>====== 然后将所有的 “ src\ ” 替换为空字符串。接着删除第一个为空的目录
 =======可能的原因是：========================
-cocos2d-x典型的目录结构中，frameworks和保存lua文件的src及res在同一层。 创建lua项目时点选src文件夹的话，项目目录被设置为 src目录的上一层。 虽然不会把src目录之外的文件加入项目，但是加载的时候还是会把其他目录扫描了。而且babelua在创建和搜索自动提示时效率确实不高，导致频繁卡顿。
-
+cocos2d-x典型的目录结构中，frameworks和保存lua文件的src及res在同一层。 创建lua项目时点选src文件夹的话，项目目录被设置为 src目录的上一层。 
+虽然不会把src目录之外的文件加入项目，但是加载的时候还是会把其他目录扫描了。而且babelua在创建和搜索自动提示时效率确实不高，导致频繁卡顿。
+------------------------------------------------------------------------
 babelua cocos2dx代码提示
 》》》》下载 cocos2dx-3.12-api.lua 到 文档\BabeLua\Completiong下
-
+-------------------------------------------------------------------------
 ==========环境变量不能有中文==============
 >>cocos -v 
 cocos2d-x-3.17.2
 Cocos Console 2.3
 >>>cocos new Mygame -p com.ruh.Mygame -l lua -d newcocos
 >>>>cocos compile -s newcocos/Mygame -p android
+-----------------------------------------------------------------------------
+==========cocos2dxlua project framwork===============
+1.excel to lua 后不是所有表格都得提前加载的，有些在用时再加载
+2.进入[加载dlg]后，加载程序预用lua(cofig数据，管理类等)，再进入游戏，unload[加载dlg]
+3.dlg文件 开发时应该用
+function unloadModule(moduleName)
+    if package.loaded[moduleName] then
+        package.loaded[moduleName] = nil
+    end
+end
+function reloadModule(moduleName)
+    if DEBUG > 0 then
+	unloadModule(moduleName)
+    end
+    return require(moduleName)
+end
+release版本不应该用unload，这样开发时不用重启程序，release时提升效率

@@ -110,13 +110,14 @@ namespace WindowsFormsApplication1
                 else
                 {
                     cmdStr = new string[] {"",""};
-                    cmdStr[0] = "cd " + path;
+                    cmdStr[0] = "cd " + textBox1.Text;
                     cmdStr[1] = "git diff " + lastVerion + dataGridView1.Rows[i].Cells[1].Value.ToString();
                     cmdStr[1] += " --name-only ";
                     tempExe = Common.execCMD(cmdStr);
                     label1.Text += tempExe;
                     panel1.AutoScrollPosition = new Point(0, panel1.VerticalScroll.Maximum);
                     Application.DoEvents();
+                    int index = -1;
                     if (!tempExe.StartsWith("[error]"))
                     {
                         cmdStr[1] = workPath;
@@ -126,9 +127,17 @@ namespace WindowsFormsApplication1
                         {
                             if (temp[k].Contains("/src/"))
                             {
-                                int index = temp[k].IndexOf("src");
-                                temp[k] = temp[k].Remove(0, index + 4);
-                                if (isEncry) temp[k] += "c";
+                                index = temp[k].IndexOf("/src/");
+                                temp[k] = temp[k].Remove(0, index+1);
+                                if (isEncry)
+                                    temp[k] = "res_src/" + temp[k]+"c";
+                                cmdStr[1] += " ";
+                                cmdStr[1] += temp[k];
+                            }
+                            else if(temp[k].Contains("/res/"))
+                            {
+                                index = temp[k].IndexOf("/res/");
+                                temp[k] = temp[k].Remove(0, index+1);
                                 cmdStr[1] += " ";
                                 cmdStr[1] += temp[k];
                             }
@@ -254,7 +263,7 @@ namespace WindowsFormsApplication1
         private void button2_Click(object sender, EventArgs e)
         {
             string[] cmdStr = new string[] { "", ""};
-            cmdStr[0] = "cd " + Directory.GetParent(textBox1.Text);
+            cmdStr[0] = "cd " + textBox1.Text;
             cmdStr[1] = "git pull";
             string tempExe = Common.execCMD(cmdStr);
             label1.Text += tempExe;
@@ -262,7 +271,7 @@ namespace WindowsFormsApplication1
             Application.DoEvents();
             if (!tempExe.StartsWith("[error]"))
             {
-                cmdStr[1] = "cocos luacompile -s src -d src_luac/src -e -k demoKey -b demoSign --disable-compile";
+                cmdStr[1] = "cocos luacompile -s src -d res_src/src -e -k SchrodingerNet_COG -b SchrodingerNet --disable-compile";
                 label1.Text += Common.execCMD(cmdStr);
                 MessageBox.Show("work sucess");
             }
