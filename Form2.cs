@@ -41,11 +41,10 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string strpatj = textBox1.Text+"\\tolua";
-            if (Directory.Exists(strpatj))
-                Directory.Delete(strpatj, true);
+            string strpatj = textBox2.Text;
+            if (!Directory.Exists(strpatj))
+                Directory.CreateDirectory(strpatj);
 
-            Directory.CreateDirectory(strpatj);
             string file,tofile;           
             for (int i =0; i< this.dataGridView1.Rows.Count ;i++)
             {
@@ -91,6 +90,7 @@ namespace WindowsFormsApplication1
             {
                 XDocument xml = XDocument.Load(Form1.saveEXCEL);
                 textBox1.Text = xml.Root.Element("workPath").Value;
+                textBox2.Text = xml.Root.Element("exportPath").Value;
                 foreach (XElement item in xml.Root.Element("data").Descendants("row"))
                 {
                     DataRow dr = dt.NewRow();
@@ -125,6 +125,9 @@ namespace WindowsFormsApplication1
             XElement ele = new XElement("workPath");
             ele.Value = textBox1.Text;
             rootFirst.Add(ele);
+            ele = new XElement("exportPath");
+            ele.Value = textBox2.Text;
+            rootFirst.Add(ele);
             ele = new XElement("data");
             rootFirst.Add(ele);
             string temp;
@@ -148,6 +151,18 @@ namespace WindowsFormsApplication1
             if(e.ColumnIndex ==1)
             {
                 //button4_Click(sender, null);
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(textBox2.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
