@@ -22,7 +22,7 @@ Cocos Console 2.3
 >>>>cocos compile -s newcocos/Mygame -p android
 -----------------------------------------------------------------------------
 ==========cocos2dxlua project framwork===============
-1.excel to lua 后不是所有表格都得提前加载的，有些在用时再加载
+1.excel to lua 后不是所有表格都得提前加载的，有些可在用时再加载
 2.进入[加载dlg]后，加载程序预用lua(cofig数据，管理类等)，再进入游戏，unload[加载dlg]
 3.dlg文件 开发时应该用
 function unloadModule(moduleName)
@@ -36,4 +36,9 @@ function reloadModule(moduleName)
     end
     return require(moduleName)
 end
-release版本不应该用unload，这样开发时不用重启程序，release时提升效率
+release版本不应该用unload，这样开发时不用重启程序，release时提升效率---unload 完会释放了dlg类，正常只是释放了实例
+
+4.lua 加密，debug时用源代码，发布时全替换加密文件再加包，加
+	std::string writePath = FileUtils::getInstance()->getWritablePath();
+	writePath.append("res_encode/src");
+	FileUtils::getInstance()->addSearchPath(writePath,true);  //确保先搜索加密文件夹
