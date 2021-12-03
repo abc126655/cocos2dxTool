@@ -24,6 +24,7 @@ Cocos Console 2.3
 ==========cocos2dxlua project framwork===============
 1.excel to lua 后不是所有表格都得提前加载的，有些可在用时再加载
 2.进入[加载dlg]后，加载程序预用lua(cofig数据，管理类等)，再进入游戏，unload[加载dlg]
+  DLG要进行分级，一级主界面，二级子界面，三级提示框（提示框正常只有一个的存在，打开一个关闭其它，避免层级太深），顶层界面（确认comfirm,高于确认的提示tip）
 3.dlg文件 开发时应该用
 function unloadModule(moduleName)
     if package.loaded[moduleName] then

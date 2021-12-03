@@ -43,5 +43,37 @@ namespace WindowsFormsApplication1
             textBox4.Text = Form1.saveEXCEL;
             textBox5.Text = Form1.fileName;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string [] strs = Common.execCMD("where git").Split('\n');
+            for (int k = 0; k < strs.Length; k++)
+            {
+                if(strs[k].Contains("git.exe"))
+                {
+                    textBox1.Text = strs[k];
+                    break;
+                }
+            }
+            strs = Common.execCMD("where zip").Split('\n');
+            for (int k = 0; k < strs.Length; k++)
+            {
+                if (strs[k].Contains("zip.exe"))
+                {
+                    textBox2.Text = strs[k];
+                    break;
+                }
+            }
+            strs = Common.execCMD("where cocos").Split('\n');
+            for (int k = 0; k < strs.Length; k++)
+            {
+                if (strs[k].Contains("cocos.bat"))
+                {
+                    textBox3.Text = strs[k];
+                    break;
+                }
+            }
+
+        }
     }
 }

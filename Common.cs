@@ -14,6 +14,11 @@ namespace WindowsFormsApplication1
 {
     class Common
     {
+        public static string execCMD(string command)
+        {
+            string[] cmdStr = new string[] { command };
+            return execCMD(cmdStr);
+        }
         public static string execCMD(string[] command)
         {
             System.Diagnostics.Process pro = new System.Diagnostics.Process();
