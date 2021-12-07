@@ -14,6 +14,19 @@ namespace WindowsFormsApplication1
 {
     class Common
     {
+        public static bool execBatFile(string fileName)
+        {
+            Process proc = new Process();
+            string targetDir = Path.GetDirectoryName(fileName);
+
+            proc.StartInfo.WorkingDirectory = targetDir;
+            proc.StartInfo.FileName = Path.GetFileName(fileName);  // "start.bat";
+            proc.StartInfo.Arguments = string.Format("10");
+
+            proc.Start();
+            proc.WaitForExit();
+            return true;
+        }
         public static string execCMD(string command)
         {
             string[] cmdStr = new string[] { command };

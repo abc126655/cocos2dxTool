@@ -173,8 +173,10 @@
             // 平台打包ToolStripMenuItem
             // 
             this.平台打包ToolStripMenuItem.Name = "平台打包ToolStripMenuItem";
+            this.平台打包ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.平台打包ToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.平台打包ToolStripMenuItem.Text = "平台打包";
+            this.平台打包ToolStripMenuItem.Click += new System.EventHandler(this.平台打包ToolStripMenuItem_Click);
             // 
             // 设置ToolStripMenuItem
             // 

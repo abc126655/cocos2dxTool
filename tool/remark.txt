@@ -21,6 +21,12 @@ Cocos Console 2.3
 >>>cocos new Mygame -p com.ruh.Mygame -l lua -d newcocos
 >>>>cocos compile -s newcocos/Mygame -p android
 -----------------------------------------------------------------------------
+=============CMD常用命令=================================================
+查找git目录    where git >>>>  D:\Git\cmd\git.exe
+设置变量       set a=aaaa
+查找变量值     set a >>>>  输出所有a开头变量      set >>>> 输出所有变量
+
+-----------------------------------------------------------------------------
 ==========cocos2dxlua project framwork===============
 1.excel to lua 后不是所有表格都得提前加载的，有些可在用时再加载
 2.进入[加载dlg]后，加载程序预用lua(cofig数据，管理类等)，再进入游戏，unload[加载dlg]
@@ -43,3 +49,4 @@ release版本不应该用unload，这样开发时不用重启程序，release时提升效率---unload 完
 	std::string writePath = FileUtils::getInstance()->getWritablePath();
 	writePath.append("res_encode/src");
 	FileUtils::getInstance()->addSearchPath(writePath,true);  //确保先搜索加密文件夹
+

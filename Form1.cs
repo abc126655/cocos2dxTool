@@ -282,5 +282,11 @@ namespace WindowsFormsApplication1
             Form3 fm = new Form3();
             fm.ShowDialog();
         }
+
+        private void 平台打包ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FmExecBat fm = new FmExecBat();
+            fm.ShowDialog();
+        }
     }
 }
