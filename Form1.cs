@@ -22,7 +22,7 @@ namespace WindowsFormsApplication1
         public Form1()
         {
             InitializeComponent();
-            fileName = ConfigurationManager.AppSettings["saveFile"];
+            fileName  = ConfigurationManager.AppSettings["saveFile"];
             saveEXCEL = ConfigurationManager.AppSettings["saveExel"];
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -287,6 +287,23 @@ namespace WindowsFormsApplication1
         {
             FmExecBat fm = new FmExecBat();
             fm.ShowDialog();
+        }
+
+        private void panel2_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+        }
+
+        private void updateScriptV10ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = true;
+            label5.Text = "cocos2dx tool--update script\r\n\t\r\n\r\n 版本号1.0.0\r\n 版本日期2021-12\r\n 联系作者:abc126500";
+        }
+
+        private void 使用说明ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = true;
+            label5.Text = "cocos2dx tool--update script\r\n\t\r\n  初次使用之前，先打开设置界面，先检查环境变量是否都完成配置。\r\n  如果使用excel to lua请先安装程序accessdatamanage.exe\r\n\r\n     版本号：1.0.0\r\n ";
         }
     }
 }

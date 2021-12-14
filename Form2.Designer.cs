@@ -73,6 +73,8 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -91,6 +93,7 @@
             this.Column1.DataPropertyName = "name";
             this.Column1.HeaderText = "文件名";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column1.Width = 235;
             // 
@@ -99,6 +102,7 @@
             this.Column2.DataPropertyName = "val";
             this.Column2.HeaderText = "是否输出";
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = false;
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column2.Width = 95;

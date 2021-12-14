@@ -50,3 +50,4 @@ release版本不应该用unload，这样开发时不用重启程序，release时提升效率---unload 完
 	writePath.append("res_encode/src");
 	FileUtils::getInstance()->addSearchPath(writePath,true);  //确保先搜索加密文件夹
 
+5：注意 uwidget：clone时确保 uwidget是否发生了改变，uwidget：不clone原来ccnode，像ccsprite就不会被clone
